@@ -267,7 +267,7 @@ session_start();
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="../../image/logo-default.png" alt="VTC logo">
+                <img src="/vtc/image/logo-default.png" alt="VTC logo">
             </div>
             <div class="top-nav">
                 <a href="#">eLearning Resources ▾</a>
@@ -283,7 +283,7 @@ session_start();
         <div class="hero-container">
             <h1>Log in to the site</h1>
             <div class="breadcrumb">
-                🏠 <a href="#">Home</a> &gt; Log in to the site
+                🏠 <a href="vtc/online system/moodle/index.php">Home</a> &gt; Log in to the site
             </div>
         </div>
     </div>

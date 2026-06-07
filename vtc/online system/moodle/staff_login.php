@@ -1,26 +1,5 @@
 <?php
-// staff_login.php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 session_start();
-
-$error_message = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-    $password = isset($_POST['password']) ? trim($_POST['password']) : '';
-
-    if ($email === "staff@vtc.edu.hk" && $password === "Staffpassword123") {
-        $_SESSION['staff_logged_in'] = true;
-        $_SESSION['staff_email'] = $email;
-
-        echo "<h1 style='color:green; text-align:center; margin-top:50px;'>🎉 職員登入成功！</h1>";
-        echo "<p style='text-align:center;'>您的帳號為: " . htmlspecialchars($email) . "</p>";
-        exit;
-    } else {
-        $error_message = "不正確的帳號或密碼，請重新輸入。";
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -206,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Please logon by your CNA email address and Password<br>請輸入你的 CNA 電郵地址及密碼登入
                 </div>
 
-                <form action="staff_login.php" method="POST">
+                <form action="functions.php?op=staffLogin" method="POST">
                     <div class="form-group"><input type="text" name="email" class="input-field" placeholder="someone@vtc.edu.hk" required></div>
                     <div class="form-group"><input type="password" name="password" class="input-field" placeholder="Password" required></div>
                     <button type="submit" class="btn-signin">Sign in</button>
@@ -218,6 +197,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
+
+
 </body>
 
 </html>
