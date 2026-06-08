@@ -1,0 +1,39 @@
+<?php include 'cas_head.php';
+?>
+<body> 
+    <h1>staff attendance</h1>
+
+    <a href="cas_index.php">回到首頁</a>
+    <a href="attendance.php">考勤管理頁面</a>
+    <p>這裡是員工考勤頁面</p>
+    <p>這裡會顯示員工的考勤記錄，並提供相關功能，如打卡、請假等。</p>
+    <?php
+    $attendance_records = [
+        ['date' => '2024-06-01', 'status' => '出勤'],
+        ['date' => '2024-06-02', 'status' => '請假'],
+        ['date' => '2024-06-03', 'status' => '出勤'],
+        ['date' => '2024-06-04', 'status' => '遲到'],
+    ];
+    ?>
+    <h2>考勤記錄</h2>
+    <table border="1">
+        <tr>
+            <th>日期</th>
+            <th>狀態</th>
+            <th>人工</th>
+        </tr>
+        <?php foreach ($attendance_records as $record): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($record['date']); ?></td>
+                <td><?php echo htmlspecialchars($record['status']); ?></td>
+                <td><?php 
+                    $salary = $record['status'] == '出勤' ? '+100' :
+                              ($record['status'] == '請假' ? '+0' :
+                              ($record['status'] == '遲到' ? '-100' : '無'));
+                    echo htmlspecialchars($salary);
+                ?></td>    
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>

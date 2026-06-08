@@ -34,12 +34,9 @@ if (isset($_GET['op']) && $_GET['op'] == 'checkLogin') {
     if (checkLogin($email, $password)) {
 
         $_SESSION['student_user'] = $email;
-        header("Location: studenthome.php");
-        exit();
-    } else {
         echo "<script>
-            alert('帳號密碼都能忘你讀什麼IT?');
-            window.location.href = 'index.php';
+            alert('student can not login with cas pls use moodle login');
+            window.location.href = 'moodle.php';
         </script>";
         exit();
     }
@@ -52,31 +49,15 @@ if (isset($_GET['op']) && $_GET['op'] == 'staffLogin') {
     if (checkStaffLogin($email, $password)) {
         $_SESSION['staff_logged_in'] = true;
         $_SESSION['staff_email'] = $email;
-        header("Location: staffhome.php");
+        header("Location: cas_index.php");
         exit();
     } else {
         echo "<script>
             alert('帳號密碼都能忘你做什麼老師?');
-            window.location.href = 'index.php';
+            window.location.href = 'cas_login.php';
         </script>";
         exit();
     }
-}
-
-function checkLogin($email, $password)
-{
-
-    $users = [
-        ['email' => '123@vtc.edu.hk', 'password' => '123']
-    ];
-
-    foreach ($users as $user) {
-        if ($user['email'] === $email && $user['password'] === $password) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 function checkStaffLogin($email, $password)
@@ -93,3 +74,5 @@ function checkStaffLogin($email, $password)
 
     return false;
 }
+
+$user_name = $_SESSION['staff_email'] ?? 'Staff';
