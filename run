@@ -1,2 +1,6 @@
-php -S 0.0.0.0:8080  Moodle
-php -5 0.0.0.0:8000 mypt
+php -S 0.0.0.0:8080
+sudo apt-get update
+sudo apt-get install -y php-mysql
+composer require vlucas/phpdotenv
+mysql -u root
+sudo service mysql start

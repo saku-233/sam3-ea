@@ -1,0 +1,26 @@
+services:
+  db:
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=my_online_system_db
+      - MYSQL_USER=system_user
+      - MYSQL_PASSWORD=system_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  web:
+    image: moodlehq/moodle-php-apache:8.1
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - moodle_data:/var/www/moodledata
+    depends_on:
+      - db
+
+volumes:
+  mariadb_data:
+  moodle_data:
